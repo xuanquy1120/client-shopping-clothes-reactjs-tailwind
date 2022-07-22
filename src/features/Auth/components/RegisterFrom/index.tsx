@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 export default function RegisterFrom() {
   return (
@@ -19,12 +20,12 @@ export default function RegisterFrom() {
             <h1 className="text-white font-bold text-4xl font-sans">Login</h1>
             <p className="text-white mt-1">Come back login</p>
             <div className="flex justify-center lg:justify-start mt-6">
-              <a
-                href="/auth/login"
+              <Link
+                to="/auth/login"
                 className="hover:bg-indigo-700 hover:text-white hover:-translate-y-1 transition-all duration-500 bg-white text-indigo-800 mt-4 px-4 py-2 rounded-2xl font-bold mb-2"
               >
                 Login
-              </a>
+              </Link>
             </div>
           </div>
         </div>

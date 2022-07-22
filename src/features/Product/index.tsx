@@ -1,5 +1,11 @@
-import React from 'react';
-
+import { Route, Routes } from 'react-router-dom';
+import ProductPage from './page/ProductPage';
 export default function FeaturesProduct() {
-  return <div>FeaturesProduct</div>;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<ProductPage />}></Route>
+      </Routes>
+    </>
+  );
 }

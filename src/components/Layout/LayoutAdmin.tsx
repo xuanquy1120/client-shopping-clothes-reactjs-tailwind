@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function LayoutAdmin() {
-  return (
-    <div>LayoutAdmin</div>
-  )
+  return <div>LayoutAdmin</div>;
 }
