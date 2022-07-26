@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import Page404 from 'components/Page404';
 import Footer from 'components/Footer';
 import FeaturesProduct from 'features/Product';
-export default function LayoutMain() {
+export const  LayoutMain=() =>{
   return (
     <>
       <Navbar></Navbar>

@@ -2,7 +2,7 @@ import React from 'react';
 import AuthFeature from 'features/Auth';
 import { Route, Routes } from 'react-router-dom';
 import Page404 from 'components/Page404';
-export default function LayoutAuth() {
+export const  LayoutAuth=()=> {
   return (
     <>
       <Routes>

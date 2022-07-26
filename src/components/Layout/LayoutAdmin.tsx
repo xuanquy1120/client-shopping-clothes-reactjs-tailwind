@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function LayoutAdmin() {
+export const  LayoutAdmin=()=> {
   return <div>LayoutAdmin</div>;
 }

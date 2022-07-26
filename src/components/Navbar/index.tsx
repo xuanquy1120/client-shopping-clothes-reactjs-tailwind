@@ -17,7 +17,7 @@ export default function Navbar() {
               <Link to="/product">Products</Link>
             </li>
             <li>
-              <Link to="/cart">
+              <Link to="/cart" className="relative ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -32,6 +32,9 @@ export default function Navbar() {
                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                   />
                 </svg>
+                <span className="absolute rounded-full bg-blue-700 w-5 h-5 text-center leading-5 text-white  top-4 -right-2 font-semibold">
+                  4
+                </span>
               </Link>
             </li>
           </ul>

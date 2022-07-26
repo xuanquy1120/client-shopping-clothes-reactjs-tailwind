@@ -1,5 +1,5 @@
-import LayoutAuth from 'components/Layout/LayoutAuth';
-import LayoutMain from 'components/Layout/LayoutMain';
+import { LayoutAuth } from 'components/Layout/LayoutAuth';
+import { LayoutMain } from 'components/Layout/LayoutMain';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
