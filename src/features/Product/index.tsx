@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import ProductPage from './page/ProductPage';
-export default function FeaturesProduct() {
+import {ProductPage} from './page/ProductPage';
+export function FeaturesProduct() {
   return (
     <>
       <Routes>

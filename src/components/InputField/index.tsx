@@ -10,7 +10,7 @@ export interface InputFieldProps {
   placeholder?: string;
   type?: string;
 }
-function InputField(props: InputFieldProps) {
+export function InputField(props: InputFieldProps) {
   const { form, name, label, disabled = false, placeholder, className, type = 'text' } = props;
 
   return (
@@ -47,4 +47,4 @@ function InputField(props: InputFieldProps) {
   );
 }
 
-export default InputField;
+

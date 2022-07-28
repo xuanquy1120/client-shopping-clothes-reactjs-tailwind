@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { authApi } from 'api';
 import { User } from 'models/User';
+import { RootState } from 'redux/store';
 
 export interface LoginPayload{
   email: string;
@@ -16,8 +17,8 @@ export interface AuthState {
     user: User | null;
     token: String | null;
   }
-export interface Register {
-    user: User | null;
+export interface RegisterSuccess {
+  result: String | null;
   }
   const initialState: AuthState = {
     user: null,
@@ -29,7 +30,7 @@ export interface Register {
     return data.results;
   });
   export const register = createAsyncThunk('auth/register', async (payload: RegisterPayload) => {
-    const data = await authApi.register(payload);    
+    const data = await authApi.register(payload);        
     return data.results;
   });
 
@@ -38,27 +39,27 @@ export interface Register {
     initialState,
     reducers: {
       logout(state) {
-        state.user = null;
-        state.token = null;
-        localStorage.setItem('token', '');
+        state.user=null
+        document.cookie = "token=";
       },
     },
     extraReducers: (builder) => {
       builder
         .addCase(login.fulfilled, (state, action) => {
           state.user = action.payload.user;
-          state.token = action.payload.token;
-          document.cookie = `token=${action.payload.token}`;
+          // state.token = action.payload.token;
+          document.cookie = `token=${action.payload.token as any}`;
           // localStorage.setItem('token', action.payload.token as string);
         }).addCase(login.rejected, (state, action) => {
         state.user = null;
-        state.token = null;
+        // state.token = null;
       });
     },
   });
 
   // Actions
 export const authActions = authSlice.actions;
+export const selectCurrentUser = (state: RootState) => state.auth.user;
 
 // Reducer
 const authReducer = authSlice.reducer;

@@ -1,9 +1,11 @@
-import Page404 from 'components/Page404';
-import React from 'react';
+import {Page404} from 'components/Page404';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import LoginPage from './page/LoginPage';
-import RegisterPage from './page/RegisterPage';
-export default function AuthFeature() {
+import {LoginPage} from './page/LoginPage';
+import {RegisterPage} from './page/RegisterPage';
+export function AuthFeature() {
+  if (decodeURIComponent(document.cookie.split('=')[1])) {
+    return <Navigate replace to="/product" />;
+  }
   return (
     <>
       <Routes>

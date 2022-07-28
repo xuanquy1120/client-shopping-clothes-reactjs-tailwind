@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import InputField from 'components/InputFied';
-import Loading from 'components/Loading';
+import {InputField} from 'components/InputField';
+import {Loading} from 'components/Loading';
 import { LoginPayload } from 'features/Auth/services/authSlice';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ export interface ILoginFormProps {
   onSubmit: (values: LoginPayload) => void;
   loading: boolean;
 }
-export default function LoginForm({ onSubmit, loading }: ILoginFormProps) {
+export function LoginForm({ onSubmit, loading }: ILoginFormProps) {
   const handleSubmit = async (values: LoginPayload) => {
     onSubmit(values);
   };

@@ -37,7 +37,7 @@ axiosClient.interceptors.response.use(
   function (error) {
 
     const { config, status, data } = error.response;
-    const URLs = ['/auth/login'];
+    const URLs = ['/auth/login','/auth/register'];
 
     if (URLs.includes(config.url) && status === 500) {
       const errorMsg = data.message || "";

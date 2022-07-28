@@ -5,8 +5,5 @@ export interface User {
     name: string;
     address: string;
     phone: string;
-    city: string;
-    district: string;
-    ward: string;
-    avatar: string;
+    ProductInCart:[]
   }

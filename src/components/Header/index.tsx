@@ -2,7 +2,7 @@ import React from 'react';
 
 import ImageUser from 'assets/img/user.png';
 import { Link } from 'react-router-dom';
-export default function Header() {
+export function Header() {
   return (
     <>
       <div className="bg-white-300">

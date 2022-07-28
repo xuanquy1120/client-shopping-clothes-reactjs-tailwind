@@ -1,6 +1,14 @@
+import { cartActions, selectTotalPrice } from 'features/Cart/services/cartSlice';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from 'redux/hooks';
 
-export default function DeliveryInfo() {
+export  function DeliveryInfo() {
+  const dispatch = useDispatch();
+  const totalPrice = useAppSelector(selectTotalPrice);
+  const handleBuyProduct = ()  => {
+    dispatch(cartActions.buyProduct());
+  }
   return (
     <>
       <div className="w-full">
@@ -14,7 +22,7 @@ export default function DeliveryInfo() {
               <div className="w-1/2 px-3 mb-4">
                 <input
                   type="text"
-                  className="w-full  pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  className="w-full  pl-4 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Name"
                 />
               </div>
@@ -22,7 +30,7 @@ export default function DeliveryInfo() {
               <div className="w-1/2 px-3 mb-4">
                 <input
                   type="text"
-                  className="w-full  pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                  className="w-full  pl-4 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Number"
                 />
               </div>
@@ -62,11 +70,12 @@ export default function DeliveryInfo() {
           <div className="border-t mt-8">
             <div className="flex font-semibold justify-between py-6 text-sm uppercase">
               <span>Total cost</span>
-              <span>$600</span>
+              <span>${totalPrice}</span>
             </div>
             <button
               type="submit"
               className="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2"
+              onClick={handleBuyProduct}
             >
               BUY NOW
             </button>

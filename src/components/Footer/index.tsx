@@ -1,4 +1,4 @@
-export default function Footer() {
+export function Footer() {
   return (
     <footer className=" flex justify-center items-center bg-white-300 h-20">
       <span className="font-semibold text-black-40">Copyright © </span>

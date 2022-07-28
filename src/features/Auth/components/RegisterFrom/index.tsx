@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RegisterPayload } from 'features/Auth/services/authSlice';
-import InputField from 'components/InputFied';
+import  {InputField}  from 'components/InputField';
 export interface RegisterFormProps {
   onSubmit: (values: RegisterPayload) => void;
   loading: boolean;
 }
-export default function RegisterFrom({ onSubmit, loading }: RegisterFormProps) {
+export function RegisterFrom({ onSubmit, loading }: RegisterFormProps) {
   const handleSubmit = async (values: RegisterPayload) => {
     onSubmit(values);
   };
@@ -26,7 +26,7 @@ export default function RegisterFrom({ onSubmit, loading }: RegisterFormProps) {
       email: '',
       password: '',
       username: '',
-      confirm:'',
+      confirm: '',
     },
     reValidateMode: 'onChange',
     resolver: yupResolver(schema),

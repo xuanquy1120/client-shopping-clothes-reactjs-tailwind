@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ProductSearch() {
+export function ProductSearch() {
   return (
     <>
       <div className="flex items-center flex-wrap justify-between text-sm tracking-widest uppercase ">

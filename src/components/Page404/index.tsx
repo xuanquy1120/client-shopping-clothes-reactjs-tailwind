@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Page404() {
+export function Page404() {
   return (
     <>
       <main className="h-screen w-full flex flex-col justify-center items-center bg-[#1A2238]">

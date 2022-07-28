@@ -1,11 +1,11 @@
 import { productsApi } from 'api';
-import Loading from 'components/Loading';
+import {Loading} from 'components/Loading';
 import { Product } from 'models';
 import { useEffect, useState } from 'react';
-import ProductFilters from '../components/ProductFilters';
-import ProductList from '../components/ProductList';
+import {ProductFilters} from '../components/ProductFilters';
+import {ProductList} from '../components/ProductList';
 
-export default function ProductPage() {
+export function ProductPage() {
   const [loading, setLoading] = useState(false);
   const [listProducts, setListProducts] = useState<Product[]>([]);
   useEffect(() => {
@@ -15,13 +15,12 @@ export default function ProductPage() {
         setListProducts(results);
       } catch (error) {
         console.error(error);
-      }finally{
-        setLoading(true)
+      } finally {
+        setLoading(true);
       }
     })();
   }, []);
-  console.log(listProducts);
-  
+
   return (
     <>
       <div className="bg-white dark:bg-gray-900 ">
