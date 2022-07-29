@@ -1,25 +1,26 @@
 import { selectCurrentUser } from 'features/Auth/services/authSlice';
-import { cartActions, selectQuantityCart } from 'features/Cart/services/cartSlice';
+import { addCartUsers, CartUser, selectQuantityCart } from 'features/Cart/services/cartSlice';
 import { Product } from 'models';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from 'redux/hooks';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 
 export function ProductCart({ product }: { product: Product }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const quantityCart = useAppSelector(selectQuantityCart);
   const user = useAppSelector(selectCurrentUser);
   const navigate = useNavigate();
-  const handleAddToCart = () => {
-    if(user){
-      if (quantityCart >= 99) {
-        return alert('Stop add to cart! too much products in cart, please buy them');
+  const handleAddToCart = async (data: CartUser) => {
+    try {
+      if (user) {
+        if (quantityCart >= 99) {
+          return alert('Stop add to cart! too much products in cart, please buy them');
+        } else {
+          await dispatch(addCartUsers(data));
+        }
       } else {
-        dispatch(cartActions.addProductToCart(product));
+        navigate('/auth/login');
       }
-    }else{
-      navigate('/auth/login');
-    }
+    } catch (error) {}
   };
   return (
     <>
@@ -34,7 +35,7 @@ export function ProductCart({ product }: { product: Product }) {
         <div className="w-full p-2">
           <button
             className="flex items-center justify-center w-full p-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 select-none"
-            onClick={handleAddToCart}
+            onClick={() => handleAddToCart({ quantity: 1, product})}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

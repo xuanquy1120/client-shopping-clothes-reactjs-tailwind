@@ -6,6 +6,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import {DangerAlert} from 'components/Alerts/DangerAlert';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { cartActions } from 'features/Cart/services/cartSlice';
 
 export function Login() {
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,8 @@ export function Login() {
     setLoading(true);
     try {
       const result = await dispatch(login(data));
-      unwrapResult(result);
+      const {user} = unwrapResult(result);
+      dispatch(cartActions.setCartUser(user))
       navigate('/product');
     } catch (error: any) {
       setAlert(true);

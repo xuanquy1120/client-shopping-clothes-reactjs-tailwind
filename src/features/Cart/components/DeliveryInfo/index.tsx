@@ -1,14 +1,11 @@
-import { cartActions, selectTotalPrice } from 'features/Cart/services/cartSlice';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import { selectTotalPrice } from 'features/Cart/services/cartSlice';
 import { useAppSelector } from 'redux/hooks';
 
-export  function DeliveryInfo() {
-  const dispatch = useDispatch();
+export function DeliveryInfo() {
   const totalPrice = useAppSelector(selectTotalPrice);
-  const handleBuyProduct = ()  => {
-    dispatch(cartActions.buyProduct());
-  }
+  const handleBuyProduct = () => {
+    console.log('bla bla bla');
+  };
   return (
     <>
       <div className="w-full">
