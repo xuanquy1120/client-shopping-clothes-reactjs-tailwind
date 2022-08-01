@@ -1,5 +1,5 @@
 import { selectCurrentUser } from 'features/Auth/services/authSlice';
-import { addCartUsers, CartUser, selectQuantityCart } from 'features/Cart/services/cartSlice';
+import { addCartUser, CartUser, selectQuantityCart } from 'features/Cart/services/cartSlice';
 import { Product } from 'models';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
@@ -15,7 +15,7 @@ export function ProductCart({ product }: { product: Product }) {
         if (quantityCart >= 99) {
           return alert('Stop add to cart! too much products in cart, please buy them');
         } else {
-          await dispatch(addCartUsers(data));
+          await dispatch(addCartUser(data));
         }
       } else {
         navigate('/auth/login');

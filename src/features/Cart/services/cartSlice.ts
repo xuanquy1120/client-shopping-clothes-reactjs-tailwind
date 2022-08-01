@@ -13,7 +13,11 @@ export interface CartUser {
 const initialState: CartState = {
   cartProducts: [],
 };
-export const addCartUsers = createAsyncThunk('user/addCartToUser', async (payload: CartUser) => {
+export const updateCartUser = createAsyncThunk('user/updateCartUser', async (payload: CartUser) => {
+  const { results } = await cartUserApi.updateCartUser(payload);
+  return results;
+});
+export const addCartUser = createAsyncThunk('user/addCartUser', async (payload: CartUser) => {
   const { results } = await cartUserApi.addCartUser(payload);
   return results;
 });
@@ -38,12 +42,15 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(addCartUsers.fulfilled, (state, action) => {
+      .addCase(updateCartUser.fulfilled, (state, action) => {
+        state.cartProducts = action.payload;
+      })
+      .addCase(addCartUser.fulfilled, (state, action) => {
         state.cartProducts = action.payload;
       })
       .addCase(removeProductInCart.fulfilled, (state, action) => {
         state.cartProducts = action.payload;
-      })
+      });
   },
 });
 

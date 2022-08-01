@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { QuantityField } from 'components/FormControl';
-import { addCartUsers,  removeProductInCart } from 'features/Cart/services/cartSlice';
+import { removeProductInCart, updateCartUser } from 'features/Cart/services/cartSlice';
 import { Cart } from 'models/Cart';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from 'redux/hooks';
@@ -11,15 +11,15 @@ interface CartItemProps {
 
 export const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useAppDispatch();
-  const handleRemoveProduct = (_id: string) => {    
+  const handleRemoveProduct = (_id: string) => {
     dispatch(removeProductInCart(_id));
   };
   const handleSubmit = async (value: any) => {
     if (value <= 0) return;
-    await dispatch(addCartUsers({ product: item.product, quantity: value.quantity }))
+    await dispatch(updateCartUser({ product: item.product, quantity: value.quantity }));
   };
   const handleChange = async (value: any) => {
-    await dispatch(addCartUsers({ product: item.product, quantity: value }));
+    await dispatch(updateCartUser({ product: item.product, quantity: value }));
   };
   const schema = yup.object().shape({
     quantity: yup.number().min(1).max(99).required('Quantity is required'),
