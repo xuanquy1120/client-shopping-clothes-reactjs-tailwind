@@ -2,7 +2,7 @@ import { selectProductCart } from 'features/Cart/services/cartSlice';
 import { useAppSelector } from 'redux/hooks';
 import { CartItem } from './CartItem';
 export function CartInfo({ quantityCart }: { quantityCart: number }) {
-  const listProducts = useAppSelector(selectProductCart); 
+  const listProducts = useAppSelector(selectProductCart);
   return (
     <>
       <div className="flex justify-between border-b p-4">
@@ -16,8 +16,8 @@ export function CartInfo({ quantityCart }: { quantityCart: number }) {
         <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5">Total</h3>
       </div>
       <div className="h-96 overflow-y-auto overflow-x-hidden px-10">
-        {listProducts.map((item,index) => (
-          <CartItem item={item} key={index}/>
+        {listProducts.map((item) => (
+          <CartItem item={item} key={item.product._id} />
         ))}
       </div>
     </>

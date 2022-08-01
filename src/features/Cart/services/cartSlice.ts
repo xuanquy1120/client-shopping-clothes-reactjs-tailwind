@@ -21,7 +21,7 @@ export const addCartUser = createAsyncThunk('user/addCartUser', async (payload: 
   const { results } = await cartUserApi.addCartUser(payload);
   return results;
 });
-export const removeProductInCart = createAsyncThunk('user/deleteCartToUser', async (payload: any) => {
+export const removeProductInCart = createAsyncThunk('user/deleteCartToUser', async (payload: string) => {
   const { results } = await cartUserApi.removeProductInCart(payload);
   return results;
 });
@@ -29,10 +29,6 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    removeProductInCart(state, action) {
-      const productRemove = state.cartProducts.findIndex((item) => item.product._id === action.payload);
-      state.cartProducts.splice(productRemove, 1);
-    },
     removeAllCart(state) {
       state.cartProducts = [];
     },
