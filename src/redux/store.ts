@@ -1,6 +1,7 @@
 import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import authReducer from 'features/Auth/services/authSlice';
 import cartReducer from 'features/Cart/services/cartSlice';
+import productReducer from 'features/Product/services/productSlice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   // auth: persistReducer(authPersistConfig, authReducer),
   auth: authReducer,
   cart: cartReducer,
+  products: productReducer
 });
 
 const persistConfig = {

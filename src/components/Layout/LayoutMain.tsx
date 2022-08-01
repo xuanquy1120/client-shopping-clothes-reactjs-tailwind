@@ -9,9 +9,7 @@ import React from 'react';
 // import FeaturesCart from 'features/Cart';
 // import FeaturesHome from 'features/Home';
 import { Route, Routes } from 'react-router-dom';
-// import Page404 from 'components/Page404';
-// import Footer from 'components/Footer';
-// import FeaturesProduct from 'features/Product';
+
 export const  LayoutMain=() =>{
   return (
     <>

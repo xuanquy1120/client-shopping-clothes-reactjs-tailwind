@@ -47,12 +47,9 @@ export interface RegisterSuccess {
       builder
         .addCase(login.fulfilled, (state, action) => {
           state.user = action.payload.user;
-          // state.token = action.payload.token;
           document.cookie = `token=${action.payload.token as any}`;
-          // localStorage.setItem('token', action.payload.token as string);
         }).addCase(login.rejected, (state, action) => {
         state.user = null;
-        // state.token = null;
       });
     },
   });

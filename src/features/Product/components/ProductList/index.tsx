@@ -1,18 +1,17 @@
-import {Pagination} from 'components/Pagination';
-import { Product } from 'models';
-import {ProductCart} from '../ProductCart';
-import {ProductSearch} from '../ProductSearch';
+import { Pagination } from 'components/Pagination';
+import { selectProducts } from 'features/Product/services/productSlice';
+import { useAppSelector } from 'redux/hooks';
+import { ProductCart } from '../ProductCart';
+import { ProductSearch } from '../ProductSearch';
 
-export interface IProductListProps {
-  listProducts: Product[];
-}
-export function ProductList({ listProducts }: IProductListProps) {
+export function ProductList() {
+  const {products} = useAppSelector(selectProducts);
   return (
     <>
       <div className=" lg:mt-0 lg:px-2 lg:w-4/5 select-none">
         <ProductSearch/>
         <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {listProducts.map((product) => (
+          {products.map((product) => (
             <ProductCart product={product} key={product._id}></ProductCart>
           ))}
         </div>
