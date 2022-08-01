@@ -11,12 +11,6 @@ export function ProductFilters() {
         <div className="flex">
           <input type="checkBox" className="mr-4" />
           <button className="block font-medium text-gray-500 dark:text-gray-300 hover:underline">
-            Shirts
-          </button>
-        </div>
-        <div className="flex">
-          <input type="checkBox" className="mr-4" />
-          <button className="block font-medium text-gray-500 dark:text-gray-300 hover:underline">
             Jeans
           </button>
         </div>
