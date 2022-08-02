@@ -48,7 +48,7 @@ export function UserSelectorMenu({ user }: UserSelectorMenuProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
-        {open ? (
+        {open && (
           <div className="absolute right-0  bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4">
             <div className="px-4 py-3">
               <span className="block text-sm font-medium text-gray-900 truncate">{user.email}</span>
@@ -72,8 +72,6 @@ export function UserSelectorMenu({ user }: UserSelectorMenuProps) {
               Sign out
             </button>
           </div>
-        ) : (
-          <></>
         )}
       </div>
     </>

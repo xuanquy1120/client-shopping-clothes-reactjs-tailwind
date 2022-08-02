@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const  LayoutAdmin=()=> {
+export const LayoutAdmin = () => {
   return <div>LayoutAdmin</div>;
-}
+};

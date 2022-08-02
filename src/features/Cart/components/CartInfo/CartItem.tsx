@@ -22,7 +22,7 @@ export const CartItem = ({ item }: CartItemProps) => {
   };
   const schema = yup.object().shape({
     quantity: yup.number().min(1).max(99).required('Quantity is required'),
-  });  
+  });
 
   const form = useForm({
     defaultValues: {
@@ -48,7 +48,7 @@ export const CartItem = ({ item }: CartItemProps) => {
       </div>
       <div className="md:flex justify-center w-1/5 select-none cursor-pointer">
         <form onSubmit={form.handleSubmit(handleSubmit)}>
-          <QuantityField form={form} name="quantity" onChange={handleChange} min={1} max={99}/>
+          <QuantityField form={form} name="quantity" onChange={handleChange} min={1} max={99} />
         </form>
       </div>
       <span className="text-center  w-1/5 font-semibold text-sm">{item.product.price}</span>

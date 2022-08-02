@@ -74,8 +74,8 @@ export function QuantityField({
             <div>
               <input
                 onChange={(e) => {
-                  onChange(Number(e.target.value))
-                  handleChangeQuantity(Number(e.target.value))
+                  onChange(Number(e.target.value));
+                  handleChangeQuantity(Number(e.target.value));
                 }}
                 type="number"
                 className="p-1 w-8 text-center"

@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import {InputField} from 'components/FormControl/InputField';
-import {Loading} from 'components/Loading';
+import { InputField } from 'components/FormControl/InputField';
+import { Loading } from 'components/Loading';
 import { LoginPayload } from 'features/Auth/services/authSlice';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';

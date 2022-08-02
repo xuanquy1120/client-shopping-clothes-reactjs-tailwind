@@ -10,7 +10,7 @@ import React from 'react';
 // import FeaturesHome from 'features/Home';
 import { Route, Routes } from 'react-router-dom';
 
-export const  LayoutMain=() =>{
+export const LayoutMain = () => {
   return (
     <>
       <Navbar></Navbar>
@@ -25,4 +25,4 @@ export const  LayoutMain=() =>{
       <Footer></Footer>
     </>
   );
-}
+};

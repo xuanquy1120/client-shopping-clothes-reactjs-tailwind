@@ -1,2 +1,2 @@
-export * from "./QuantityField"
-export * from "./InputField"
+export * from './QuantityField';
+export * from './InputField';

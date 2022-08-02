@@ -35,7 +35,7 @@ export function ProductCart({ product }: { product: Product }) {
         <div className="w-full p-2">
           <button
             className="flex items-center justify-center w-full p-2 mt-4 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-700 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 select-none"
-            onClick={() => handleAddToCart({ quantity: 1, product})}
+            onClick={() => handleAddToCart({ quantity: 1, product })}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

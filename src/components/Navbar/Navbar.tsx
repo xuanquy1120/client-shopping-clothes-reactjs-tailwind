@@ -46,7 +46,7 @@ export function Navbar() {
                 )}
               </Link>
             </li>
-            <li> {user ? <UserSelectorMenu user={user}></UserSelectorMenu> : <></>}</li>
+            <li> {user && <UserSelectorMenu user={user}></UserSelectorMenu>}</li>
           </ul>
         </div>
       </div>

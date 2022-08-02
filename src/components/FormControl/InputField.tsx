@@ -46,5 +46,3 @@ export function InputField(props: InputFieldProps) {
     />
   );
 }
-
-

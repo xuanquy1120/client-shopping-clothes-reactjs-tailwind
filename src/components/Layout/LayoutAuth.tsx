@@ -1,7 +1,7 @@
 import { Page404 } from 'components/Page404';
 import { AuthFeature } from 'features/Auth';
 import { Route, Routes } from 'react-router-dom';
-export const  LayoutAuth=()=> {
+export const LayoutAuth = () => {
   return (
     <>
       <Routes>
@@ -10,4 +10,4 @@ export const  LayoutAuth=()=> {
       </Routes>
     </>
   );
-}
+};

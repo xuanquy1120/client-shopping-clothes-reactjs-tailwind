@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function DangerAlert({ label, message }: { label: string; message: string }) {
   return (
     <>

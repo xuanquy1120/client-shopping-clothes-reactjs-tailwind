@@ -14,7 +14,7 @@ root.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <BrowserRouter>
-        <ScrollToTop />
+          <ScrollToTop />
           <App />
         </BrowserRouter>
       </PersistGate>

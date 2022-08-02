@@ -6,7 +6,7 @@ import { DeliveryInfo } from '../components/DeliveryInfo';
 import { selectQuantityCart } from '../services/cartSlice';
 
 export function CartPage() {
-  const quantityCart = useAppSelector(selectQuantityCart); 
+  const quantityCart = useAppSelector(selectQuantityCart);
   return (
     <>
       {quantityCart > 0 ? (

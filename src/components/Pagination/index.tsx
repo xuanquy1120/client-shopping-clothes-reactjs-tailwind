@@ -1,14 +1,30 @@
-import { Link } from 'react-router-dom';
-
-export function Pagination() {
+export interface IPaginationProps {
+  page: number;
+  total: number;
+  limit: number;
+  onPageChange: (page: number, limit: number) => void;
+}
+export function Pagination({ total, limit, page, onPageChange }: IPaginationProps) {
+  const handlePageChange = (pageCurrent: number) => {
+    if (pageCurrent === page) return;
+    onPageChange(pageCurrent, limit);
+  };
+  const handlePagePrevious = () => {
+    if (page === 1) return;
+    onPageChange(page - 1, limit);
+  };
+  const handlePageNext = () => {
+    if (page === total) return;
+    onPageChange(page + 1, limit);
+  };
   return (
     <>
       <nav>
         <ul className="inline-flex items-center -space-x-px">
           <li>
-            <Link
-              to="/product"
+            <button
               className="block py-2 px-3 ml-0 leading-tight text-gray-500 rounded-l-lg border border-gray-300 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              onClick={handlePagePrevious}
             >
               <svg
                 aria-hidden="true"
@@ -23,53 +39,27 @@ export function Pagination() {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </Link>
+            </button>
           </li>
+          {Array.from({ length: total }).map((pageNumber, index) => (
+            <li key={index}>
+              <button
+                onClick={() => handlePageChange(index + 1)}
+                className={
+                  index + 1 === page
+                    ? 'bg-blue-50 border border-gray-300 text-blue-600 hover:bg-blue-100 hover:text-blue-700  leading-tight py-2 px-3 dark:border-gray-700 dark:bg-gray-700 dark:text-white'
+                    : 'bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 hover:text-gray-700 leading-tight py-2 px-3 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+                }
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
+
           <li>
-            <Link
-              to="/product"
-              className="bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 hover:text-gray-700 leading-tight py-2 px-3 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              1
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/product"
-              className="bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 hover:text-gray-700 leading-tight py-2 px-3 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              2
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/product"
-              aria-current="page"
-              className="bg-blue-50 border border-gray-300 text-blue-600 hover:bg-blue-100 hover:text-blue-700  py-2 px-3 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-            >
-              3
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/product"
-              className="bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 hover:text-gray-700 leading-tight py-2 px-3 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              4
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/product"
-              className="bg-white border border-gray-300 text-gray-500 hover:bg-gray-100 hover:text-gray-700 leading-tight py-2 px-3 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              5
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/product"
+            <button
               className="block py-2 px-3 ml-0 leading-tight  rounded-r-lg border text-gray-500 border-gray-300 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              onClick={handlePageNext}
             >
               <svg
                 aria-hidden="true"
@@ -84,7 +74,7 @@ export function Pagination() {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </Link>
+            </button>
           </li>
         </ul>
       </nav>
