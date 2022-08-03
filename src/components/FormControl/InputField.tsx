@@ -11,7 +11,7 @@ export interface InputFieldProps {
   type?: string;
 }
 export function InputField(props: InputFieldProps) {
-  const { form, name, label, disabled = false, placeholder, className, type = 'text' } = props;
+  const { form, name, disabled = false, placeholder, className, type = 'text' } = props;
 
   return (
     <Controller
