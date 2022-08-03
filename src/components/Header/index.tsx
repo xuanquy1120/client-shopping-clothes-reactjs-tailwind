@@ -6,7 +6,7 @@ export function Header() {
   return (
     <>
       <div className="bg-white-300">
-        <div className="flex select-none">
+        <div className="md:flex select-none">
           <div className="pl-20 mt-60 w-2/3">
             <h1 className="text-5x1 font-bold text-blue-700 pb-10 w-3/4">
               Great Discount On Latest Collections
