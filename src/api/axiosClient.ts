@@ -1,16 +1,18 @@
 import axios from 'axios';
 import { SERVER_HOST } from 'constants/common';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 const axiosClient = axios.create({
   baseURL: `${SERVER_HOST}api`,
   headers: {
     'Content-Type': 'application/json',
   },
 });
+
 axiosClient.interceptors.request.use(async (config) => {
   const customHeaders: any = {};
-  const accessToken = decodeURIComponent(document.cookie.split('=')[1]);
-  if (accessToken) {
-    customHeaders.Authorization = `Bearer ${accessToken}`;
+  if (cookies.get('token')) {
+    customHeaders.Authorization = `Bearer ${cookies.get('token')}`;
   }
   return {
     ...config,
