@@ -1,11 +1,9 @@
-import React from 'react';
 import Image from 'assets/img/logo.png';
+import { selectCurrentUser } from 'features/Auth/services/authSlice';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from 'redux/hooks';
-import { selectCurrentUser } from 'features/Auth/services/authSlice';
-
-import { selectQuantityCart } from 'features/Cart/services/cartSlice';
 import { UserSelectorMenu } from 'components/Navbar/UserSelectorMenu';
+import { selectQuantityCart } from 'features/Cart/services/cartSlice';
 export function Navbar() {
   const user = useAppSelector(selectCurrentUser);
   const quantityCart = useAppSelector(selectQuantityCart);

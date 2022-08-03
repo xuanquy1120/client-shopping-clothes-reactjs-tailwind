@@ -3,7 +3,7 @@ import { login, LoginPayload } from 'features/Auth/services/authSlice';
 import { cartActions } from 'features/Cart/services/cartSlice';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch } from 'redux/hooks';
 import { LoginForm } from '../components/LoginForm';
@@ -27,7 +27,7 @@ export function LoginPage() {
   };
   return (
     <>
-      <ToastContainer />
+      
       <LoginForm onSubmit={handleSubmit} loading={loading}></LoginForm>
     </>
   );

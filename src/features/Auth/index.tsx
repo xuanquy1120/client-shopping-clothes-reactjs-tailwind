@@ -7,7 +7,6 @@ import { RegisterPage } from './page/RegisterPage';
 
 export function AuthFeature() {
   const cookies = new Cookies();
-
   if (cookies.get('token')) {
     return <Navigate replace to="/product" />;
   }

@@ -1,18 +1,17 @@
+import { selectQuantityProduct } from "features/Product/services/productSlice";
+import { useAppSelector } from "redux/hooks";
+
 export interface SearchProps {
   onChangeSearch: (payload: any) => void;
   nameProduct: any;
 }
-export function ProductSearch({onChangeSearch, nameProduct}:SearchProps) {
+export function ProductSearch({ onChangeSearch, nameProduct }: SearchProps) {
+  const quantityProduct = useAppSelector(selectQuantityProduct)
   return (
     <>
       <div className="flex items-center flex-wrap justify-between text-sm tracking-widest uppercase ">
         <div className="flex items-center">
-          <p className="text-gray-500 dark:text-gray-300">Sort</p>
-          <select className="font-medium text-gray-700 bg-transparent dark:text-gray-500 focus:outline-none">
-            <option value="#">Recommended</option>
-            <option value="#">Size</option>
-            <option value="#">Price</option>
-          </select>
+          <p className="text-gray-500 dark:text-gray-300">{quantityProduct + " Product"}</p>
         </div>
         <form className="flex items-center ">
           <label className="sr-only">Search</label>
@@ -39,29 +38,9 @@ export function ProductSearch({onChangeSearch, nameProduct}:SearchProps) {
               placeholder="Search"
               required
               value={nameProduct}
-              onChange={(e)=>onChangeSearch(e.target.value)}
+              onChange={(e) => onChangeSearch(e.target.value)}
             />
           </div>
-
-          <button
-            type="submit"
-            className="p-2.5 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              ></path>
-            </svg>
-          </button>
         </form>
       </div>
     </>

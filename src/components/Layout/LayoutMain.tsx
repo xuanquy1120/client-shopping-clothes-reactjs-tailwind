@@ -1,13 +1,9 @@
-// import Navbar from 'components/Navbar';
 import { Footer } from 'components/Footer';
 import { Navbar } from 'components/Navbar';
 import { Page404 } from 'components/Page404';
 import { FeaturesCart } from 'features/Cart';
 import { FeaturesHome } from 'features/Home';
 import { FeaturesProduct } from 'features/Product';
-import React from 'react';
-// import FeaturesCart from 'features/Cart';
-// import FeaturesHome from 'features/Home';
 import { Route, Routes } from 'react-router-dom';
 
 export const LayoutMain = () => {

@@ -1,8 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { unwrapResult } from '@reduxjs/toolkit';
 import { QuantityField } from 'components/FormControl';
 import { removeProductInCart, updateCartUser } from 'features/Cart/services/cartSlice';
 import { Cart } from 'models/Cart';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch } from 'redux/hooks';
 import * as yup from 'yup';
 interface CartItemProps {
@@ -10,15 +13,27 @@ interface CartItemProps {
 }
 export const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useAppDispatch();
-  const handleRemoveProduct = (_id: string) => {
-    dispatch(removeProductInCart(_id));
+  const handleRemoveProduct = async (_id: string) => {
+    try {
+      const results= await dispatch(removeProductInCart(_id));
+      unwrapResult(results);
+      toast("Successful remove!");
+    } catch (error:any  ) {
+      toast(error.message + '!');
+    }
+
   };
   const handleSubmit = async (value: any) => {
     if (value <= 0) return;
     await dispatch(updateCartUser({ product: item.product, quantity: value.quantity }));
   };
   const handleChange = async (value: any) => {
-    await dispatch(updateCartUser({ product: item.product, quantity: value }));
+    try {
+      const results = await dispatch(updateCartUser({ product: item.product, quantity: value }));
+      unwrapResult(results);
+    } catch (error:any) {
+      toast(error.message + '!');
+    }
   };
   const schema = yup.object().shape({
     quantity: yup.number().min(1).max(99).required('Quantity is required'),

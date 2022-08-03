@@ -57,6 +57,7 @@ export const productActions = productSlice.actions;
 export const selectProducts = (state: RootState) => state.products;
 export const selectPagination = (state: RootState) => state.products.pagination;
 export const selectFilter = (state: RootState) => state.products.filter;
+export const selectQuantityProduct = (state: RootState) =>state.products.products.length
 
 // Reducer
 const productReducer = productSlice.reducer;

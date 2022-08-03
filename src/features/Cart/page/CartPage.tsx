@@ -1,12 +1,13 @@
+import { selectCurrentUser } from 'features/Auth/services/authSlice';
 import { useAppSelector } from 'redux/hooks';
 import { CartEmpty } from '../components/CartEmpty';
 import { CartInfo } from '../components/CartInfo';
 import { DeliveryInfo } from '../components/DeliveryInfo';
-
 import { selectQuantityCart } from '../services/cartSlice';
 
 export function CartPage() {
   const quantityCart = useAppSelector(selectQuantityCart);
+  const user = useAppSelector(selectCurrentUser);
   return (
     <>
       {quantityCart > 0 ? (
@@ -18,7 +19,7 @@ export function CartPage() {
                   <CartInfo quantityCart={quantityCart}></CartInfo>
                 </div>
                 <div className="lg:w-1/3 px-4 py-4">
-                  <DeliveryInfo></DeliveryInfo>
+                  <DeliveryInfo user={user}></DeliveryInfo>
                 </div>
               </div>
             </div>

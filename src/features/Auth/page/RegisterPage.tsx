@@ -1,7 +1,7 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { register, RegisterPayload } from 'features/Auth/services/authSlice';
 import { useState } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch } from 'redux/hooks';
 import { RegisterFrom } from '../components/RegisterFrom';
@@ -22,7 +22,6 @@ export function RegisterPage() {
   };
   return (
     <>
-      <ToastContainer />
       <RegisterFrom onSubmit={handleSubmit} loading={loading}></RegisterFrom>
     </>
   );

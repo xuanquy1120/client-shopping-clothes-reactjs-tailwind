@@ -1,8 +1,8 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { Pagination } from 'components/Pagination';
 import {
   findProduct,
   getAllProducts,
-  productActions,
   selectFilter,
   selectPagination,
   selectProducts,
@@ -15,25 +15,33 @@ export function ProductList() {
   const filterProduct = useAppSelector(selectFilter);
   const dispatch = useAppDispatch();
   const pagination = useAppSelector(selectPagination);
+
   const handleChangePage = async (page: number, limit: number) => {
-    if (filterProduct) {
-      await dispatch(
-        findProduct({
-          category: filterProduct?.category,
-          nameProduct: filterProduct?.nameProduct,
-          page: page,
-          limit: limit,
-        })
-      );
-    } else {
-      await dispatch(getAllProducts({ page, limit }));
-    }
+    try {
+      if (filterProduct) {
+        const results = await dispatch(
+          findProduct({
+            category: filterProduct?.category,
+            nameProduct: filterProduct?.nameProduct,
+            page: page,
+            limit: limit,
+          })
+        );
+        unwrapResult(results);
+      } else {
+        const results = await dispatch(getAllProducts({ page, limit }));
+        unwrapResult(results);
+      }
+    } catch (error) {}
   };
   const handleChangeSearch = async (nameProduct: string) => {
-    if (nameProduct) {
-      await dispatch(findProduct({ nameProduct: nameProduct,category: filterProduct?.category, page: 1, limit: 8 }));
-    } else {
-      dispatch(productActions.removeFilterProduct());
+    try {
+      const results = await dispatch(
+        findProduct({ nameProduct: nameProduct, category: filterProduct?.category, page: 1, limit: 8 })
+      );
+      unwrapResult(results);
+    } catch (error) {
+
     }
   };
   return (

@@ -1,10 +1,12 @@
 import { selectTotalPrice } from 'features/Cart/services/cartSlice';
+import { User } from 'models';
 import { useAppSelector } from 'redux/hooks';
-
-export function DeliveryInfo() {
+export interface UserProps {
+  user: User|null;
+}
+export function DeliveryInfo({ user }: UserProps) {
   const totalPrice = useAppSelector(selectTotalPrice);
   const handleBuyProduct = () => {
-    console.log('bla bla bla');
   };
   return (
     <>
@@ -21,6 +23,7 @@ export function DeliveryInfo() {
                   type="text"
                   className="w-full  pl-4 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                   placeholder="Name"
+                  defaultValue={user?.username}
                 />
               </div>
               {/* number */}
@@ -40,6 +43,7 @@ export function DeliveryInfo() {
                 type="email"
                 name="email"
                 placeholder="Email Address"
+                defaultValue={user?.email}
               />
             </div>
             {/* address*/}

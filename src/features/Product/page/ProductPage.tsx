@@ -1,9 +1,10 @@
+import { unwrapResult } from '@reduxjs/toolkit';
 import { Loading } from 'components/Loading';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { ProductFilters } from '../components/ProductFilters';
 import { ProductList } from '../components/ProductList';
-import { findProduct, getAllProducts, productActions, selectFilter } from '../services/productSlice';
+import { findProduct, getAllProducts, selectFilter } from '../services/productSlice';
 
 export function ProductPage() {
   const [loading, setLoading] = useState(false);
@@ -23,11 +24,21 @@ export function ProductPage() {
     })();
   }, [dispatch, filterProduct]);
   const handleCategory = async (category: string) => {
+   try {
     if (filterProduct?.category === category) {
-      dispatch(productActions.removeFilterProduct());
+      const results = await dispatch(
+        findProduct({ category: '', nameProduct: filterProduct?.nameProduct, page: 1, limit: 8 })
+      );
+      unwrapResult(results);
     } else {
-      await dispatch(findProduct({ category: category, nameProduct: filterProduct?.nameProduct,page: 1, limit: 4 }));
+      const results = await dispatch(
+        findProduct({ category: category, nameProduct: filterProduct?.nameProduct, page: 1, limit: 8 })
+      );
+      unwrapResult(results);
     }
+   } catch (error:any) {
+
+   }
   };
   return (
     <>
