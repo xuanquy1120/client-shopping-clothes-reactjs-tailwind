@@ -44,9 +44,10 @@ export function ProductPage() {
     <>
       <div className="bg-white dark:bg-gray-900 ">
         <div className="container p-2 pl-20 pr-20 mx-auto">
-          <div className="lg:flex lg:-mx-2">
+          <div className="lg:flex lg:-mx-2 ">
             <ProductFilters
               onChangeCategory={handleCategory}
+              category = {filterProduct?.category}
             ></ProductFilters>
             {loading ? <ProductList></ProductList> : <Loading></Loading>}
           </div>

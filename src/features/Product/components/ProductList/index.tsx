@@ -9,6 +9,7 @@ import {
 } from 'features/Product/services/productSlice';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { ProductCart } from '../ProductCart';
+import { ProductEmpty } from '../ProductEmpty';
 import { ProductSearch } from '../ProductSearch';
 export function ProductList() {
   const { products } = useAppSelector(selectProducts);
@@ -40,19 +41,21 @@ export function ProductList() {
         findProduct({ nameProduct: nameProduct, category: filterProduct?.category, page: 1, limit: 8 })
       );
       unwrapResult(results);
-    } catch (error) {
-
-    }
+    } catch (error) {}
   };
   return (
     <>
-      <div className=" lg:mt-0 lg:px-2 lg:w-4/5 select-none">
+      <div className=" lg:mt-0 lg:px-2 lg:w-4/5 select-none ">
         <ProductSearch onChangeSearch={handleChangeSearch} nameProduct={filterProduct?.nameProduct} />
-        <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product) => (
-            <ProductCart product={product} key={product._id}></ProductCart>
-          ))}
-        </div>
+        {products.length > 0 ? (
+          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {products.map((product) => (
+              <ProductCart product={product} key={product._id}></ProductCart>
+            ))}
+          </div>
+        ) : (
+          <ProductEmpty />
+        )}
         <div className="flex justify-center mt-10 py-10">
           <Pagination
             page={pagination.page}

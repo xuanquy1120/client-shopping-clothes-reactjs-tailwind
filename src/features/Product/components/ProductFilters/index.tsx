@@ -2,10 +2,11 @@ import { useState } from 'react';
 
 export interface CategoryProps {
   onChangeCategory: (payload: string) => void;
+  category: any;
 }
 
-export function ProductFilters({ onChangeCategory }: CategoryProps) {
-  const [isCategory, setCategory] = useState('');
+export function ProductFilters({ onChangeCategory,category }: CategoryProps) {
+  const [isCategory, setCategory] = useState(category);
   const handleCategory = (category: string) => {
     onChangeCategory(category);
     if (category === isCategory) {
