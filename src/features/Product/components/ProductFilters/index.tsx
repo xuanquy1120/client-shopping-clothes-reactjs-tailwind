@@ -1,8 +1,19 @@
+import { useState } from 'react';
+
 export interface CategoryProps {
   onChangeCategory: (payload: string) => void;
-  category: any;
 }
-export function ProductFilters({ onChangeCategory, category }: CategoryProps) {
+
+export function ProductFilters({ onChangeCategory }: CategoryProps) {
+  const [isCategory, setCategory] = useState('');
+  const handleCategory = (category: string) => {
+    onChangeCategory(category);
+    if (category === isCategory) {
+      setCategory('');
+    } else {
+      setCategory(category);
+    }
+  };
   return (
     <>
       <div className="space-y-3 lg:w-1/5 lg:space-y-4 mt-0  lg:mt-20 select-none">
@@ -10,12 +21,12 @@ export function ProductFilters({ onChangeCategory, category }: CategoryProps) {
           <input
             type="checkBox"
             className="mr-4"
-            checked={category === 'Hoodies' ? true : false}
-            onChange={() => onChangeCategory('Hoodies')}
+            checked={isCategory === 'Hoodies' ? true : false}
+            onChange={() => handleCategory('Hoodies')}
           />
           <button
             className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
-            onClick={() => onChangeCategory('Hoodies')}
+            onClick={() => handleCategory('Hoodies')}
           >
             Hoodies
           </button>
@@ -24,12 +35,12 @@ export function ProductFilters({ onChangeCategory, category }: CategoryProps) {
           <input
             type="checkBox"
             className="mr-4"
-            checked={category === 'Jeans' ? true : false}
-            onChange={() => onChangeCategory('Jeans')}
+            checked={isCategory === 'Jeans' ? true : false}
+            onChange={() => handleCategory('Jeans')}
           />
           <button
             className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
-            onClick={() => onChangeCategory('Jeans')}
+            onClick={() => handleCategory('Jeans')}
           >
             Jeans
           </button>
@@ -38,12 +49,12 @@ export function ProductFilters({ onChangeCategory, category }: CategoryProps) {
           <input
             type="checkBox"
             className="mr-4"
-            checked={category === 'Shorts' ? true : false}
-            onChange={() => onChangeCategory('Shorts')}
+            checked={isCategory === 'Shorts' ? true : false}
+            onChange={() => handleCategory('Shorts')}
           />
           <button
             className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
-            onClick={() => onChangeCategory('Shorts')}
+            onClick={() => handleCategory('Shorts')}
           >
             Shorts
           </button>
@@ -52,12 +63,12 @@ export function ProductFilters({ onChangeCategory, category }: CategoryProps) {
           <input
             type="checkBox"
             className="mr-4"
-            checked={category === 'T-Shirt' ? true : false}
-            onChange={() => onChangeCategory('T-Shirt')}
+            checked={isCategory === 'T-Shirt' ? true : false}
+            onChange={() => handleCategory('T-Shirt')}
           />
           <button
             className="block font-medium text-gray-500 dark:text-gray-300 hover:underline"
-            onClick={() => onChangeCategory('T-Shirt')}
+            onClick={() => handleCategory('T-Shirt')}
           >
             T-shirts
           </button>

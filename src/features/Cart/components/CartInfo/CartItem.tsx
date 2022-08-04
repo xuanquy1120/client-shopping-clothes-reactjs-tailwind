@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { QuantityField } from 'components/FormControl';
-import { removeProductInCart, updateCartUser } from 'features/Cart/services/cartSlice';
+import { cartActions, removeProductInCart, updateCartUser } from 'features/Cart/services/cartSlice';
 import { Cart } from 'models/Cart';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -15,6 +15,7 @@ export const CartItem = ({ item }: CartItemProps) => {
   const dispatch = useAppDispatch();
   const handleRemoveProduct = async (_id: string) => {
     try {
+      dispatch(cartActions.removeToCart(_id))
       const results= await dispatch(removeProductInCart(_id));
       unwrapResult(results);
       toast("Successful remove!");
@@ -29,6 +30,7 @@ export const CartItem = ({ item }: CartItemProps) => {
   };
   const handleChange = async (value: any) => {
     try {
+      dispatch(cartActions.updateToCart({ product: item.product, quantity: value }))
       const results = await dispatch(updateCartUser({ product: item.product, quantity: value }));
       unwrapResult(results);
     } catch (error:any) {

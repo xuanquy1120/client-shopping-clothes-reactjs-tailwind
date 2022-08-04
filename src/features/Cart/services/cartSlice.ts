@@ -14,15 +14,15 @@ const initialState: CartState = {
   cartProducts: [],
 };
 export const updateCartUser = createAsyncThunk('user/updateCartUser', async (payload: CartUser) => {
-  const { results } = await cartUserApi.updateCartUser(payload);
+  const  results  = await cartUserApi.updateCartUser(payload);
   return results;
 });
 export const addCartUser = createAsyncThunk('user/addCartUser', async (payload: CartUser) => {
-  const { results } = await cartUserApi.addCartUser(payload);
+  const results = await cartUserApi.addCartUser(payload);
   return results;
 });
 export const removeProductInCart = createAsyncThunk('user/deleteCartToUser', async (payload: string) => {
-  const { results } = await cartUserApi.removeProductInCart(payload);
+  const  results  = await cartUserApi.removeProductInCart(payload);
   return results;
 });
 const cartSlice = createSlice({
@@ -32,6 +32,28 @@ const cartSlice = createSlice({
     removeAllCart(state) {
       state.cartProducts = [];
     },
+    removeToCart(state, action) {
+      const productIndex = state.cartProducts.findIndex(
+        (item) => item.product._id === action.payload
+      );
+      state.cartProducts.splice(productIndex,1);
+    },
+    addToCart(state, action) {
+      const productIndex = state.cartProducts.findIndex(
+        (item) => item.product._id === action.payload.product._id
+      );
+      if (productIndex >= 0) {
+        state.cartProducts[productIndex].quantity += action.payload.quantity;
+      } else {
+        state.cartProducts.push(action.payload);
+      }
+    },
+    updateToCart(state, action) {
+      const productIndex = state.cartProducts.findIndex(
+        (item) => item.product._id === action.payload.product._id
+      );
+      state.cartProducts[productIndex].quantity = action.payload.quantity;
+    },
     setCartUser(state, action) {
       state.cartProducts = action.payload.cart;
     },
@@ -39,13 +61,19 @@ const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(updateCartUser.fulfilled, (state, action) => {
-        state.cartProducts = action.payload;
+        if (action.payload.message === 'ok') {
+          state.cartProducts = action.payload.results;
+        }
       })
       .addCase(addCartUser.fulfilled, (state, action) => {
-        state.cartProducts = action.payload;
+        if (action.payload.message === 'ok') {
+          state.cartProducts = action.payload.results;
+        }
       })
       .addCase(removeProductInCart.fulfilled, (state, action) => {
-        state.cartProducts = action.payload;
+        if (action.payload.message === 'ok') {
+          state.cartProducts = action.payload.results;
+        }
       });
   },
 });

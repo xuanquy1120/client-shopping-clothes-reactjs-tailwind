@@ -24,7 +24,6 @@ export function LoginForm({ onSubmit, loading }: ILoginFormProps) {
       email: '',
       password: '',
     },
-    reValidateMode: 'onChange',
     resolver: yupResolver(schema),
   });
   return (

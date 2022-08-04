@@ -1,11 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './styles.css';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { RegisterPayload } from 'features/Auth/services/authSlice';
 import { InputField } from 'components/FormControl/InputField';
+import { RegisterPayload } from 'features/Auth/services/authSlice';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import * as yup from 'yup';
+import './styles.css';
 export interface RegisterFormProps {
   onSubmit: (values: RegisterPayload) => void;
   loading: boolean;
@@ -20,7 +19,6 @@ export function RegisterFrom({ onSubmit, loading }: RegisterFormProps) {
     username: yup.string().min(6, 'Username must be at least 6 characters').required('Username is required'),
     confirm: yup.string().oneOf([yup.ref('password'), null], 'Password incorrect!'),
   });
-
   const form = useForm({
     defaultValues: {
       email: '',
@@ -28,7 +26,6 @@ export function RegisterFrom({ onSubmit, loading }: RegisterFormProps) {
       username: '',
       confirm: '',
     },
-    reValidateMode: 'onChange',
     resolver: yupResolver(schema),
   });
   return (

@@ -1,6 +1,6 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import { selectCurrentUser } from 'features/Auth/services/authSlice';
-import { addCartUser, CartUser, selectQuantityCart } from 'features/Cart/services/cartSlice';
+import { addCartUser, cartActions, CartUser, selectQuantityCart } from 'features/Cart/services/cartSlice';
 import { Product } from 'models';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -17,6 +17,7 @@ export function ProductCart({ product }: { product: Product }) {
         if (quantityCart >= 99) {
           return alert('Stop add to cart! too much products in cart, please buy them');
         } else {
+          dispatch(cartActions.addToCart(data))
           const results =  await dispatch(addCartUser(data));
           unwrapResult(results);
           toast("Successful add to cart!");

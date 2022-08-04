@@ -47,7 +47,6 @@ export function ProductPage() {
           <div className="lg:flex lg:-mx-2">
             <ProductFilters
               onChangeCategory={handleCategory}
-              category={filterProduct?.category}
             ></ProductFilters>
             {loading ? <ProductList></ProductList> : <Loading></Loading>}
           </div>
